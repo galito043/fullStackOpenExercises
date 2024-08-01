@@ -24,7 +24,6 @@ const App = () => {
     return anecdoteWithMostVotesIndex;
   }, [votes]);
 
-  getAnecdoteWithMostVotes();
   const getRandom = () => {
     return Math.floor(Math.random() * 7);
   };
@@ -60,16 +59,16 @@ const App = () => {
   );
 };
 
-const Button = ({ actionOnClick, text }) => {
-  return <button onClick={actionOnClick}>{text}</button>;
-};
-export default App;
-
 const AnecdoteMostVotes = ({ getAnecdoteWithMostVotes, votes, anecdotes }) => {
   return (
     <div>
       <h1>Anecdote With most votes</h1>
-      <p>{anecdotes[getAnecdoteWithMostVotes()]}</p>
+      <p>{anecdotes[getAnecdoteWithMostVotes]}</p>
     </div>
   );
 };
+
+const Button = ({ actionOnClick, text }) => {
+  return <button onClick={actionOnClick}>{text}</button>;
+};
+export default App;
