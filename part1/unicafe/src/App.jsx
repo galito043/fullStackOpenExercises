@@ -2,9 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import mixpanel from "mixpanel-browser";
 
-mixpanel.init("d1d6743e3110dc71c7cb6e55402f22c4");
-mixpanel.track();
-
 const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
