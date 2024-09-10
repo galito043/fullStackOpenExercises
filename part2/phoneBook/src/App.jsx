@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 const App = () => {
-  const [persons, setPersons] = useState([{ name: "Arto Hellas", phoneNumber: "040 12345678" }]);
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [existingPerson, setExisitngPerson] = useState(false);
   const [newPhoneNum, setNewPhoneNum] = useState("");
   const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
+    axios.get("http://localhost:3001/persons").then((response) => {
+      console.log(response.data, "in-effect");
+      setPersons(response.data);
+    });
+  });
+
+  useEffect(() => {
     const personsArray = persons.map((person) => person.name);
     const personExists = personsArray.includes(newName);
     setExisitngPerson(personExists);
-  }),
-    [newName, persons];
+  }, [newName, persons]);
+
   const actionOnSubmit = (event) => {
     event.preventDefault();
 
@@ -33,10 +40,6 @@ const App = () => {
     setState(event.target.value);
   };
 
-  // const handlePhoneChange = (event) => {
-  //   console.log(event.target.value);
-  //   setNewPhoneNum(event.target.value);
-  // };
   return (
     <div>
       <h2>Phonebook</h2>
