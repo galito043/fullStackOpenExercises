@@ -12,7 +12,7 @@ const App = () => {
       console.log(response.data, "in-effect");
       setPersons(response.data);
     });
-  });
+  }, []);
 
   useEffect(() => {
     const personsArray = persons.map((person) => person.name);
@@ -28,7 +28,7 @@ const App = () => {
       : (() => {
           const person = {
             name: newName,
-            phoneNumber: newPhoneNum
+            number: newPhoneNum
           };
           setPersons(persons.concat(person));
           setNewName("");
@@ -70,8 +70,8 @@ const DisplayPersons = ({ persons, searchField }) => {
         })
         .map((filteredPerson) => {
           return (
-            <div>
-              {filteredPerson.name} {filteredPerson.phoneNumber}
+            <div key={filteredPerson.name}>
+              {filteredPerson.name} {filteredPerson.number}
             </div>
           );
         })}
